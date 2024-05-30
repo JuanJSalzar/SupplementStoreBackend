@@ -11,13 +11,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("connectionStore")); // Here we are connecting to the database
+    options.UseSqlServer(builder.Configuration.GetConnectionString("connectionStore")); 
 });
-
-
-//   "ConnectionStrings": {
-//     "connectionStore": "Server=tcp:juanjose.database.windows.net,1433;Initial Catalog=supplement;Persist Security Info=False;User ID=supplements;Password=Hola.2003;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-//   }
 
 builder.Services.AddScoped<IProductService, ProductService>();
 
