@@ -5,23 +5,22 @@ using Microsoft.EntityFrameworkCore;
 [Route("[controller]")]
 public class ProductController : ControllerBase
 {
-    // private readonly ApplicationContext _context;
     private readonly IProductService _productService;
 
-    public ProductController(/*ApplicationContext context*/ IProductService productService) // Here we are injecting the context to give access to the database
+    public ProductController(IProductService productService)
     {
         _productService = productService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public IActionResult Get()
     {
         var products = _productService.Get();
         return Ok(products);
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> Get([FromRoute]long id)
+    public IActionResult Get(long id)
     {
         var product = _productService.Get(id);
 
@@ -34,14 +33,14 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody]PostPutDto productDto)
+    public IActionResult Post([FromBody]PostPutDto productDto)
     {
         var newProduct = _productService.Save(productDto);
         return Ok(newProduct);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put([FromRoute]long id, [FromBody] PostPutDto productDto)
+    public IActionResult Put(long id, [FromBody] PostPutDto productDto)
     {
         var existingProduct = _productService.Update(id, productDto);
 
@@ -54,7 +53,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete([FromRoute]long id)
+    public IActionResult Delete(long id)
     {
         var existingProduct = _productService.Delete(id);
 
