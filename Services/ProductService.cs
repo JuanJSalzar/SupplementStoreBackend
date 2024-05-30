@@ -12,7 +12,7 @@ public class ProductService : IProductService
         return _context.Products.OrderByDescending(p => p.UpdatedAt).ToList();
     }
 
-    public Product Get(long id)
+    public Product? Get(long id)
     {
         return _context.Products.Find(id);
     }
@@ -30,7 +30,7 @@ public class ProductService : IProductService
         return newProduct;
     }
 
-    public Product Update(long id, PostPutDto productDto)
+    public Product? Update(long id, PostPutDto productDto)
     {
         var existingProduct = _context.Products.Find(id);
 
@@ -48,7 +48,7 @@ public class ProductService : IProductService
         return existingProduct;
     }
 
-    public Product Delete(long id)
+    public Product? Delete(long id)
     {
         var existingProduct = _context.Products.Find(id);
 
